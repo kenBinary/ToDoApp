@@ -25,19 +25,19 @@ public class App {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.ipady = 5;
 
-        for (int i=0; i < 20; i++) {
-            for (int j=0; j < 4; j++) {
-                // JLabel bruh = new JLabel("laksdfj" + i + "," + j);
-            //    JButton tes = new JButton("laksdjf" + i+"," + j);
-               JPanel test  = new JPanel(new BorderLayout());
-               test.setBackground(Color.blue);
-               test.setBorder(BorderFactory.createLineBorder(Color.green));
-               JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
-               label.setEditable(false);
-               test.add(label,BorderLayout.CENTER);
-            firstPanel.add(test,gbc);
-            }
-        }    
+        // for (int i=0; i < 20; i++) {
+        //     for (int j=0; j < 4; j++) {
+        //         // JLabel bruh = new JLabel("laksdfj" + i + "," + j);
+        //     //    JButton tes = new JButton("laksdjf" + i+"," + j);
+        //        JPanel test  = new JPanel(new BorderLayout());
+        //        test.setBackground(Color.blue);
+        //        test.setBorder(BorderFactory.createLineBorder(Color.green));
+        //        JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
+        //        label.setEditable(false);
+        //        test.add(label,BorderLayout.CENTER);
+        //     firstPanel.add(test,gbc);
+        //     }
+        // }    
 
 
         JScrollPane scrollPane = new JScrollPane();
@@ -82,6 +82,17 @@ public class App {
         frame.add(thirdPanel,BorderLayout.EAST);
         frame.setVisible(true);
 
+        //event listener to remove all components and activities
+        deleteAllActivity.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                firstPanel.removeAll();
+                firstPanel.revalidate();
+                firstPanel.repaint();
+            }
+        });
+
+
+        // event listener to add new activity
         addActivity.addActionListener(
             new ActionListener() {
 
@@ -108,10 +119,10 @@ public class App {
                     hourPholder.changeAlpha(0.5f);
 
                     myPanel.add(activityName);
-                    myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+                    myPanel.add(Box.createHorizontalStrut(15));
                     myPanel.add(new JLabel("Due Date:"));
                     myPanel.add(dueDate);
-                    myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+                    myPanel.add(Box.createHorizontalStrut(15));
                     myPanel.add(new JLabel("Due hour:"));
                     myPanel.add(dueHour);
               
@@ -120,11 +131,22 @@ public class App {
             
             
                     if (result == JOptionPane.OK_OPTION) {
-                       System.out.println("x value: " + activityName.getText());
-                       System.out.println("y value: " + dueDate.getText());
-                       System.out.println("y value: " + dueHour.getText());
+
+
+
                        Activity test = new Activity(activityName.getText(),dueDate.getText(),dueHour.getText());
-                       System.out.println(test);
+                    //    System.out.println(test);
+                    //    JPanel pan  = new JPanel(new BorderLayout());
+                    //    pan.setBackground(Color.blue);
+                    //    pan.setBorder(BorderFactory.createLineBorder(Color.green));
+                    //    JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
+                    //    label.setEditable(false);
+                    //    pan.add(label,BorderLayout.CENTER);
+                    //    firstPanel.add(pan,gbc);
+
+                       firstPanel.add(new JButton("Button"),gbc);
+                       firstPanel.revalidate();
+
                     }
                 }
 

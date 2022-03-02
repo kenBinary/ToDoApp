@@ -1,12 +1,16 @@
 import javax.swing.*;
 import javax.swing.UIManager.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class App {
+    
 
-    App(){
+
+    App() {
+
         JFrame frame = new JFrame("To-do");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -24,21 +28,6 @@ public class App {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.ipady = 5;
-
-        // for (int i=0; i < 20; i++) {
-        //     for (int j=0; j < 4; j++) {
-        //         // JLabel bruh = new JLabel("laksdfj" + i + "," + j);
-        //     //    JButton tes = new JButton("laksdjf" + i+"," + j);
-        //        JPanel test  = new JPanel(new BorderLayout());
-        //        test.setBackground(Color.blue);
-        //        test.setBorder(BorderFactory.createLineBorder(Color.green));
-        //        JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
-        //        label.setEditable(false);
-        //        test.add(label,BorderLayout.CENTER);
-        //     firstPanel.add(test,gbc);
-        //     }
-        // }    
-
 
         JScrollPane scrollPane = new JScrollPane();
 
@@ -91,6 +80,29 @@ public class App {
             }
         });
 
+        ActionListener test = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                // frame.remove(pan);
+                Component[] component = firstPanel.getComponents();
+                // firstPanel.remove(component[0]);
+
+                for (Component bruh : component) {
+                    if (bruh.getName().equals("1")) {
+                        firstPanel.remove(bruh);
+                    }
+                }
+                firstPanel.repaint();
+                firstPanel.revalidate();
+            }
+        };
+
+
+        createList.addActionListener(test);
+        deleteList.addActionListener(test);
+
+
+
 
         // event listener to add new activity
         addActivity.addActionListener(
@@ -98,6 +110,7 @@ public class App {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
+
 
                     JTextField activityName = new JTextField(11);
                     JTextField dueDate = new JTextField(11);
@@ -131,6 +144,7 @@ public class App {
             
             
                     if (result == JOptionPane.OK_OPTION) {
+                       JPanel pan  = new JPanel(new BorderLayout());
 
 
 
@@ -138,11 +152,11 @@ public class App {
                        System.out.println(test);
 
 
-                       JPanel pan  = new JPanel(new BorderLayout());
                        pan.setBackground(Color.blue);
                        pan.setBorder(BorderFactory.createLineBorder(Color.green));
                        JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
                        label.setEditable(false);
+                       pan.setName("1");
                        pan.add(label,BorderLayout.CENTER);
                        firstPanel.add(pan,gbc);
 
@@ -153,7 +167,10 @@ public class App {
                 }
 
             });
-}
+
+
+}   
+
 
     public static void main(String[] args) throws Exception {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {

@@ -135,16 +135,18 @@ public class App {
 
 
                        Activity test = new Activity(activityName.getText(),dueDate.getText(),dueHour.getText());
-                    //    System.out.println(test);
-                    //    JPanel pan  = new JPanel(new BorderLayout());
-                    //    pan.setBackground(Color.blue);
-                    //    pan.setBorder(BorderFactory.createLineBorder(Color.green));
-                    //    JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
-                    //    label.setEditable(false);
-                    //    pan.add(label,BorderLayout.CENTER);
-                    //    firstPanel.add(pan,gbc);
+                       System.out.println(test);
 
-                       firstPanel.add(new JButton("Button"),gbc);
+
+                       JPanel pan  = new JPanel(new BorderLayout());
+                       pan.setBackground(Color.blue);
+                       pan.setBorder(BorderFactory.createLineBorder(Color.green));
+                       JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
+                       label.setEditable(false);
+                       pan.add(label,BorderLayout.CENTER);
+                       firstPanel.add(pan,gbc);
+
+                       firstPanel.add(pan,gbc);
                        firstPanel.revalidate();
 
                     }

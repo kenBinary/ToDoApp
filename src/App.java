@@ -29,7 +29,7 @@ public class App {
             //    label.setFont(new Font("Arial", Font.PLAIN, 20));
             firstPanel.add(tes);
             }
-
+        JFrame bruh = new JFrame();
         frame.add(test,BorderLayout.CENTER);
 
 

@@ -8,20 +8,15 @@ public class App {
     App(){
         JFrame frame = new JFrame("To-do");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500,700);
-        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout(0,10));
+
         JPanel firstPanel = new JPanel();
-        
         firstPanel.setBackground(new Color(12, 14, 12));
         firstPanel.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(234, 235, 234) ));
-        firstPanel.setLayout(new GridLayout(20,1,10,10));
-        firstPanel.setPreferredSize(new Dimension( 300,700));
-        firstPanel.setAutoscrolls(true);
-        JScrollPane test = new JScrollPane(firstPanel);
-        test.setPreferredSize(new Dimension( 800,300));
-        for (int i=0; i < 10; i++) {
+        firstPanel.setLayout(new GridLayout(1000,1,1,1));
+
+        for (int i=0; i < 20; i++) {
             for (int j=0; j < 4; j++) {
 
                JButton tes = new JButton("laksdjf" + i+"," + j);
@@ -29,8 +24,10 @@ public class App {
             //    label.setFont(new Font("Arial", Font.PLAIN, 20));
             firstPanel.add(tes);
             }
-        JFrame bruh = new JFrame();
-        frame.add(test,BorderLayout.CENTER);
+        }    
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(firstPanel);
+        frame.add(scrollPane,BorderLayout.CENTER);
 
 
         JPanel secondPanel = new JPanel();
@@ -66,11 +63,9 @@ public class App {
         secondPanel.add(addActivity);
         secondPanel.add(deleteAllActivity);
         
-
-        frame.add(firstPanel,BorderLayout.CENTER);
+        frame.setSize(500,500);
         frame.add(thirdPanel,BorderLayout.EAST);
         frame.setVisible(true);
-    }
 }
 
     public static void main(String[] args) throws Exception {

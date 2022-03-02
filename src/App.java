@@ -1,7 +1,8 @@
 import javax.swing.*;
 import javax.swing.UIManager.*;
-
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class App {
 
@@ -22,23 +23,25 @@ public class App {
         gbc.weighty = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.ipady = 40;
+        gbc.ipady = 5;
 
         for (int i=0; i < 20; i++) {
             for (int j=0; j < 4; j++) {
                 // JLabel bruh = new JLabel("laksdfj" + i + "," + j);
             //    JButton tes = new JButton("laksdjf" + i+"," + j);
-               JPanel test  = new JPanel();
+               JPanel test  = new JPanel(new BorderLayout());
                test.setBackground(Color.blue);
                test.setBorder(BorderFactory.createLineBorder(Color.green));
-            //    JLabel label = new JLabel("label " + i + ", " + j);
-            //    label.setFont(new Font("Arial", Font.PLAIN, 20));
+               JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
+               label.setEditable(false);
+               test.add(label,BorderLayout.CENTER);
             firstPanel.add(test,gbc);
             }
         }    
+
+
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(firstPanel);
-        frame.add(scrollPane,BorderLayout.CENTER);
+
 
 
         JPanel secondPanel = new JPanel();
@@ -73,10 +76,59 @@ public class App {
         secondPanel.add(deleteList);
         secondPanel.add(addActivity);
         secondPanel.add(deleteAllActivity);
-        
+        scrollPane.setViewportView(firstPanel);
+        frame.add(scrollPane,BorderLayout.CENTER);
         frame.setSize(500,500);
         frame.add(thirdPanel,BorderLayout.EAST);
         frame.setVisible(true);
+
+        addActivity.addActionListener(
+            new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    JTextField activityName = new JTextField(11);
+                    JTextField dueDate = new JTextField(11);
+                    JTextField dueHour = new JTextField(11);
+              
+                    JPanel myPanel = new JPanel(new GridLayout(3,2));
+
+                    myPanel.add(new JLabel("Activity Name:"));
+                    TextPrompt aPholder = new TextPrompt("Activity Name",activityName);
+                    aPholder.setForeground(Color.red);
+                    aPholder.changeAlpha(0.5f);
+
+                    TextPrompt datePholder = new TextPrompt("mm/dd/yyyy",dueDate);
+                    datePholder.setForeground(Color.red);
+                    datePholder.changeAlpha(0.5f);
+
+                    TextPrompt hourPholder = new TextPrompt("hh/mm/am or pm",dueHour);
+                    hourPholder.setForeground(Color.red);
+                    hourPholder.changeAlpha(0.5f);
+
+                    myPanel.add(activityName);
+                    myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+                    myPanel.add(new JLabel("Due Date:"));
+                    myPanel.add(dueDate);
+                    myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+                    myPanel.add(new JLabel("Due hour:"));
+                    myPanel.add(dueHour);
+              
+                    int result = JOptionPane.showConfirmDialog(frame, myPanel, 
+                             "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+            
+            
+                    if (result == JOptionPane.OK_OPTION) {
+                       System.out.println("x value: " + activityName.getText());
+                       System.out.println("y value: " + dueDate.getText());
+                       System.out.println("y value: " + dueHour.getText());
+                       Activity test = new Activity(activityName.getText(),dueDate.getText(),dueHour.getText());
+                       System.out.println(test);
+                    }
+                }
+
+            });
 }
 
     public static void main(String[] args) throws Exception {

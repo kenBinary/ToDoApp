@@ -14,15 +14,26 @@ public class App {
         JPanel firstPanel = new JPanel();
         firstPanel.setBackground(new Color(12, 14, 12));
         firstPanel.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(234, 235, 234) ));
-        firstPanel.setLayout(new GridLayout(1000,1,1,1));
+        // firstPanel.setLayout(new GridLayout(1000,1,1,1));
+
+        firstPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = 1;
+        gbc.weighty = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.ipady = 40;
 
         for (int i=0; i < 20; i++) {
             for (int j=0; j < 4; j++) {
-
-               JButton tes = new JButton("laksdjf" + i+"," + j);
+                // JLabel bruh = new JLabel("laksdfj" + i + "," + j);
+            //    JButton tes = new JButton("laksdjf" + i+"," + j);
+               JPanel test  = new JPanel();
+               test.setBackground(Color.blue);
+               test.setBorder(BorderFactory.createLineBorder(Color.green));
             //    JLabel label = new JLabel("label " + i + ", " + j);
             //    label.setFont(new Font("Arial", Font.PLAIN, 20));
-            firstPanel.add(tes);
+            firstPanel.add(test,gbc);
             }
         }    
         JScrollPane scrollPane = new JScrollPane();

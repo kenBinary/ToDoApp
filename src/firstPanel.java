@@ -7,5 +7,4 @@ public class firstPanel extends JPanel {
         this.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(234, 235, 234) ));
         this.setLayout(new GridBagLayout());
     }
-    
 }

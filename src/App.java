@@ -6,7 +6,9 @@ import java.awt.event.*;
 
 public class App {
     
-
+    JButton deleteActivity;
+    JButton addActivity;
+    JButton deleteAllActivity;
 
     App() {
 
@@ -16,12 +18,6 @@ public class App {
         frame.setLayout(new BorderLayout(0,10));
 
 
-
-        // JPanel firstPanel = new JPanel();
-        // firstPanel.setBackground(new Color(12, 14, 12));
-        // firstPanel.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(234, 235, 234) ));
-        // firstPanel.setLayout(new GridLayout(1000,1,1,1));
-        // firstPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.weightx = 1;
         gbc.weighty = 2;
@@ -30,50 +26,20 @@ public class App {
         gbc.ipady = 5;
 
 
-        //FirstPanel
         firstPanel fPanel = new firstPanel();
-
         JScrollPane scrollPane = new JScrollPane();
-        // JPanel secondPanel = new JPanel();
-
-        // secondPanel.setBackground(new Color(12, 14, 12));
-        // JPanel thirdPanel = new JPanel();
-
         thirdPanel tPanel = new thirdPanel();
         secondPanel sPanel = new secondPanel();
-
         tPanel.add(sPanel,BorderLayout.CENTER);
-        // thirdPanel.setLayout(new BorderLayout());
-        // thirdPanel.setBorder(BorderFactory.createMatteBorder(3, 0,3, 3, new Color(234, 235, 234)));
-        // thirdPanel.add(secondPanel,BorderLayout.CENTER);
-
-        // secondPanel.setSize(250, 250);
-        // secondPanel.setLayout(new GridLayout(10,1,0,25));
-        // secondPanel.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 7));
-
-        JLabel listLabel = new JLabel("View list",SwingConstants.CENTER);
-        listLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
-        JButton deleteActivity = new JButton("Delete Activity");
-        JLabel Blank  = new JLabel("       ");
-        JLabel blank1 = new JLabel("       ");
-        JLabel blank2 = new JLabel("       ");
-        JButton addActivity = new JButton("Add Activity");
-        JButton deleteAllActivity = new JButton("Delete All");
-
-        sPanel.add(Blank);
-        sPanel.add(blank1);
-        sPanel.add(blank2);
-        sPanel.add(deleteActivity);
-        sPanel.add(addActivity);
-        sPanel.add(deleteAllActivity);
-
         scrollPane.setViewportView(fPanel);
-
         frame.add(scrollPane,BorderLayout.CENTER);
         frame.setSize(500,500);
         frame.add(tPanel,BorderLayout.EAST);
         frame.setVisible(true);
 
+        deleteAllActivity = sPanel.getDeleteAll();
+        addActivity = sPanel.getAddActivity();
+        deleteActivity = sPanel.getDeleteActivity();
 
 
 
@@ -107,47 +73,50 @@ public class App {
                 public void actionPerformed(ActionEvent e) {
 
 
-                    JTextField activityName = new JTextField(11);
-                    JTextField dueDate = new JTextField(11);
-                    JTextField dueHour = new JTextField(11);
+                    // JTextField activityName = new JTextField(11);
+                    // JTextField dueDate = new JTextField(11);
+                    // JTextField dueHour = new JTextField(11);
               
-                    JPanel myPanel = new JPanel(new GridLayout(3,2));
+                    // JPanel myPanel = new JPanel(new GridLayout(3,2));
 
-                    myPanel.add(new JLabel("Activity Name:"));
-                    TextPrompt aPholder = new TextPrompt("Activity Name",activityName);
-                    aPholder.setForeground(Color.red);
-                    aPholder.changeAlpha(0.5f);
+                    
+                    // TextPrompt aPholder = new TextPrompt("Activity Name",activityName);
+                    // aPholder.setForeground(Color.red);
+                    // aPholder.changeAlpha(0.5f);
 
-                    TextPrompt datePholder = new TextPrompt("mm/dd/yyyy",dueDate);
-                    datePholder.setForeground(Color.red);
-                    datePholder.changeAlpha(0.5f);
+                    // TextPrompt datePholder = new TextPrompt("mm/dd/yyyy",dueDate);
+                    // datePholder.setForeground(Color.red);
+                    // datePholder.changeAlpha(0.5f);
 
-                    TextPrompt hourPholder = new TextPrompt("hh/mm/am or pm",dueHour);
-                    hourPholder.setForeground(Color.red);
-                    hourPholder.changeAlpha(0.5f);
+                    // TextPrompt hourPholder = new TextPrompt("hh/mm/am or pm",dueHour);
+                    // hourPholder.setForeground(Color.red);
+                    // hourPholder.changeAlpha(0.5f);
 
-                    myPanel.add(activityName);
-                    myPanel.add(Box.createHorizontalStrut(15));
-                    myPanel.add(new JLabel("Due Date:"));
-                    myPanel.add(dueDate);
-                    myPanel.add(Box.createHorizontalStrut(15));
-                    myPanel.add(new JLabel("Due hour:"));
-                    myPanel.add(dueHour);
+                    // myPanel.add(activityName);
+                    // myPanel.add(Box.createHorizontalStrut(15));
+                    // myPanel.add(new JLabel("Due Date:"));
+                    // myPanel.add(dueDate);
+                    // myPanel.add(Box.createHorizontalStrut(15));
+                    // myPanel.add(new JLabel("Due hour:"));
+                    // myPanel.add(dueHour);
+
+
+                    AddActivityPrompt myPanel = new AddActivityPrompt();
               
                     int result = JOptionPane.showConfirmDialog(frame, myPanel, 
                              "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
-            
-                    if (activityName.getText().equals("") && dueDate.getText().equals("") && dueHour.getText().equals("")) {
+                    System.out.println(result);
+                    if (myPanel.getActivityNameText().equals("") && myPanel.getDueDateText().equals("") && myPanel.getDueHourText().equals("")) {
                         JOptionPane.showMessageDialog(frame, "Enter some input!");
                         
                     }
-                    else if (!activityName.getText().equals("") || !dueDate.getText().equals("") || !dueHour.getText().equals("")) {
+                    else if (!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")) {
                        JPanel pan  = new JPanel(new BorderLayout());
                        pan.setBackground(Color.blue);
                        pan.setBorder(BorderFactory.createLineBorder(Color.green));
-                       Activity test = new Activity(activityName.getText(),dueDate.getText(),dueHour.getText());
+                       Activity test = new Activity(myPanel.getActivityNameText(),myPanel.getDueDateText(),myPanel.getDueHourText());
                        System.out.println(test);
-                       JTextArea label = new JTextArea(activityName.getText()+"\n"+dueDate.getText()+"\n"+dueHour.getText());
+                       JTextArea label = new JTextArea(myPanel.getActivityNameText()+"\n"+myPanel.getDueDateText()+"\n"+myPanel.getDueHourText());
                        label.setEditable(false);
                        pan.add(label,BorderLayout.CENTER);
                        fPanel.add(pan,gbc);

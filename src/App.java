@@ -2,8 +2,7 @@ import javax.swing.*;
 import javax.swing.UIManager.*;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class App {
     
@@ -16,23 +15,22 @@ public class App {
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout(0,10));
 
-        JPanel firstPanel = new JPanel();
-        firstPanel.setBackground(new Color(12, 14, 12));
-        firstPanel.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(234, 235, 234) ));
-        // firstPanel.setLayout(new GridLayout(1000,1,1,1));
 
-        firstPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.weightx = 1;
-        gbc.weighty = 2;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.ipady = 5;
+
+        // JPanel firstPanel = new JPanel();
+        // firstPanel.setBackground(new Color(12, 14, 12));
+        // firstPanel.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, new Color(234, 235, 234) ));
+        // firstPanel.setLayout(new GridLayout(1000,1,1,1));
+        // firstPanel.setLayout(new GridBagLayout());
+        // GridBagConstraints gbc = new GridBagConstraints();
+        // gbc.weightx = 1;
+        // gbc.weighty = 2;
+        // gbc.fill = GridBagConstraints.HORIZONTAL;
+        // gbc.gridwidth = GridBagConstraints.REMAINDER;
+        // gbc.ipady = 5;
 
         JScrollPane scrollPane = new JScrollPane();
-
-
-
+        
         JPanel secondPanel = new JPanel();
         secondPanel.setBackground(new Color(12, 14, 12));
 
@@ -48,61 +46,52 @@ public class App {
 
         JLabel listLabel = new JLabel("View list",SwingConstants.CENTER);
         listLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
-        String list[]={"Default List"};
-        JComboBox<String> activityList = new JComboBox<String>(list);
-        JButton createList = new JButton("Create List");
-        JButton deleteList = new JButton("Delete List");
+        JButton deleteActivity = new JButton("Delete Activity");
         JLabel Blank  = new JLabel("       ");
         JLabel blank1 = new JLabel("       ");
+        JLabel blank2 = new JLabel("       ");
         JButton addActivity = new JButton("Add Activity");
         JButton deleteAllActivity = new JButton("Delete All");
-        
-        secondPanel.add(listLabel);
-        secondPanel.add(activityList);
-        secondPanel.add(createList);
+
         secondPanel.add(Blank);
         secondPanel.add(blank1);
-        secondPanel.add(deleteList);
+        secondPanel.add(blank2);
+        secondPanel.add(deleteActivity);
         secondPanel.add(addActivity);
         secondPanel.add(deleteAllActivity);
-        scrollPane.setViewportView(firstPanel);
+
+        firstPanel fPanel = new firstPanel();
+        scrollPane.setViewportView(fPanel);
+
         frame.add(scrollPane,BorderLayout.CENTER);
         frame.setSize(500,500);
         frame.add(thirdPanel,BorderLayout.EAST);
         frame.setVisible(true);
 
+
+
+
+
         //event listener to remove all components and activities
         deleteAllActivity.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                firstPanel.removeAll();
-                firstPanel.revalidate();
-                firstPanel.repaint();
+                fPanel.removeAll();
+                fPanel.revalidate();
+                fPanel.repaint();
             }
         });
 
-        ActionListener test = new ActionListener(){
+        ActionListener dActvity = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                // frame.remove(pan);
-                Component[] component = firstPanel.getComponents();
-                // firstPanel.remove(component[0]);
-
-                for (Component bruh : component) {
-                    if (bruh.getName().equals("1")) {
-                        firstPanel.remove(bruh);
-                    }
-                }
-                firstPanel.repaint();
-                firstPanel.revalidate();
+                Component[] component = fPanel.getComponents();
+                fPanel.remove(component[0]);
+                fPanel.repaint();
+                fPanel.revalidate();
             }
         };
 
-
-        createList.addActionListener(test);
-        deleteList.addActionListener(test);
-
-
-
+        deleteActivity.addActionListener(dActvity);
 
         // event listener to add new activity
         addActivity.addActionListener(
@@ -142,27 +131,22 @@ public class App {
                     int result = JOptionPane.showConfirmDialog(frame, myPanel, 
                              "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
             
-            
-                    if (result == JOptionPane.OK_OPTION) {
+                    if (activityName.getText().equals("") && dueDate.getText().equals("") && dueHour.getText().equals("")) {
+                        JOptionPane.showMessageDialog(frame, "Enter some input!");
+                        
+                    }
+                    else if (!activityName.getText().equals("") || !dueDate.getText().equals("") || !dueHour.getText().equals("")) {
                        JPanel pan  = new JPanel(new BorderLayout());
-
-
-
-                       Activity test = new Activity(activityName.getText(),dueDate.getText(),dueHour.getText());
-                       System.out.println(test);
-
-
                        pan.setBackground(Color.blue);
                        pan.setBorder(BorderFactory.createLineBorder(Color.green));
-                       JTextArea label = new JTextArea("asdf\naskldjfsdf\naskldfj");
+                       Activity test = new Activity(activityName.getText(),dueDate.getText(),dueHour.getText());
+                       System.out.println(test);
+                       JTextArea label = new JTextArea(activityName.getText()+"\n"+dueDate.getText()+"\n"+dueHour.getText());
                        label.setEditable(false);
-                       pan.setName("1");
                        pan.add(label,BorderLayout.CENTER);
-                       firstPanel.add(pan,gbc);
-
-                       firstPanel.add(pan,gbc);
-                       firstPanel.revalidate();
-
+                       fPanel.add(pan,gbc);
+                       fPanel.repaint();
+                       fPanel.revalidate();
                     }
                 }
 
@@ -170,7 +154,6 @@ public class App {
 
 
 }   
-
 
     public static void main(String[] args) throws Exception {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -190,4 +173,9 @@ public class App {
         });
 
     }
+
+    
+
+
+
 }

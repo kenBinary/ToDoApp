@@ -82,18 +82,8 @@ public class App {
                             JOptionPane.showMessageDialog(frame, "Enter some input!");
                         }
                         else if (!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")) {
-
-                        //    JPanel pan  = new JPanel(new BorderLayout());
-                        //    pan.setBackground(Color.blue);
-                        //    pan.setBorder(BorderFactory.createLineBorder(Color.green));
-                        //    JTextArea label = new JTextArea("Activity name: " + myPanel.getActivityNameText()+"\n"+"Due Date: "+myPanel.getDueDateText()+"\n"+"Due Hour: "+myPanel.getDueHourText());
-                        //    label.setEditable(false);
-                        //    pan.add(label,BorderLayout.CENTER);
-
-                        //    fPanel.add(pan,gbc);
-                        //    fPanel.repaint();
-                        //    fPanel.revalidate();
-
+                        Activity nActivity = new Activity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText());
+                        System.out.print(nActivity.toString());
                         ActivityPanel aPanel = new ActivityPanel();
                         aPanel.setActivityDetails(myPanel.getActivityNameText(),myPanel.getDueDateText(),myPanel.getDueHourText());
                         fPanel.add(aPanel,gbc);
@@ -109,35 +99,20 @@ public class App {
 
                         });
 
+                        aPanel.getEdit().addMouseListener( new MouseAdapter(){
+
+                                public void mousePressed(MouseEvent e){
+                                    System.out.println("laksjdf");
+                                }
+
+
+                        });
+
 
                         }
                     }
-
-                        // ActivityPanel aPanel = new ActivityPanel();
-                        // fPanel.add(aPanel,gbc);
-                        // fPanel.updateNumbers();
-
-                        // aPanel.getFinished().addMouseListener(new MouseAdapter() {
-                        //     @Override
-                        //     public void mousePressed(MouseEvent e) {
-                        //         aPanel.changeState();
-                        //         fPanel.updateNumbers();
-                        //         fPanel.revalidate();
-                        //     }
-
-                        // });
                 }
             });
-
-
-        // deleteActivity.addActionListener(new ActionListener(){
-        //     public void actionPerformed(ActionEvent e){
-        //         fPanel.removeCompletedTasks();
-		// 		fPanel.repaint();
-        //         fPanel.revalidate();
-        //     }
-        // });
-
 
 }   
 

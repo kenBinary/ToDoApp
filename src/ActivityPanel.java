@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.text.AttributeSet.ColorAttribute;
-
 import java.awt.*;
 
 
@@ -9,6 +7,7 @@ public class ActivityPanel extends JPanel {
     JLabel activityIndex;
 	JTextArea activityDetails = new JTextArea();
 	JButton finished;
+	JButton edit;
 	
 	private boolean isFinished;
     ActivityPanel(){
@@ -34,7 +33,7 @@ public class ActivityPanel extends JPanel {
 		finished.setBorder(BorderFactory.createEmptyBorder(2, 7, 2, 7));
 		finished.setFocusPainted(false);
 
-		JButton edit = new JButton("Edit");
+		edit = new JButton("Edit");
 		finished.setBorder(BorderFactory.createEmptyBorder(2, 7, 2, 7));
 		finished.setFocusPainted(false);
 
@@ -62,6 +61,9 @@ public class ActivityPanel extends JPanel {
 	public JButton getFinished()
 	{
 		return finished;
+	}
+	public JButton getEdit(){
+		return edit;
 	}
 	
 	public boolean getState()

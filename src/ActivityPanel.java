@@ -1,8 +1,6 @@
 import javax.swing.*;
-import javax.swing.UIManager.*;
 
 import java.awt.*;
-import java.awt.event.*;
 
 
 
@@ -55,6 +53,7 @@ public class ActivityPanel extends JPanel {
 	public void changeState()
 	{
 		this.setBackground(Color.green);
+		this.setBorder(BorderFactory.createLineBorder(Color.blue));
 		activityName.setBackground(Color.green);
 		isFinished = true;
 		revalidate();

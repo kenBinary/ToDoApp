@@ -69,60 +69,56 @@ public class App {
         // event listener to add new activity
         addActivity.addActionListener(
             new ActionListener() {
-
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                    // AddActivityPrompt myPanel = new AddActivityPrompt();
+                    AddActivityPrompt myPanel = new AddActivityPrompt();
               
-                    // int result = JOptionPane.showConfirmDialog(frame, myPanel, 
-                    //          "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+                    int result = JOptionPane.showConfirmDialog(frame, myPanel, 
+                             "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
 
-                    // if (result == JOptionPane.OK_OPTION) {
-                    //     if (myPanel.getActivityNameText().equals("") && myPanel.getDueDateText().equals("") && myPanel.getDueHourText().equals("")) {
-                    //         JOptionPane.showMessageDialog(frame, "Enter some input!");
-                    //     }
-                    //     else if (!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")) {
-                    //        JPanel pan  = new JPanel(new BorderLayout());
-                    //        pan.setBackground(Color.blue);
-                    //        pan.setBorder(BorderFactory.createLineBorder(Color.green));
-                    //        JTextArea label = new JTextArea(myPanel.getActivityNameText()+"\n"+myPanel.getDueDateText()+"\n"+myPanel.getDueHourText());
-                    //        label.setEditable(false);
-                    //        pan.add(label,BorderLayout.CENTER);
+                    if (result == JOptionPane.OK_OPTION) {
+                        if (myPanel.getActivityNameText().equals("") && myPanel.getDueDateText().equals("") && myPanel.getDueHourText().equals("")) {
+                            JOptionPane.showMessageDialog(frame, "Enter some input!");
+                        }
+                        else if (!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")) {
+                           JPanel pan  = new JPanel(new BorderLayout());
+                           pan.setBackground(Color.blue);
+                           pan.setBorder(BorderFactory.createLineBorder(Color.green));
+                           JTextArea label = new JTextArea("Activity name: " + myPanel.getActivityNameText()+"\n"+"Due Date: "+myPanel.getDueDateText()+"\n"+"Due Hour: "+myPanel.getDueHourText());
+                           label.setEditable(false);
+                           pan.add(label,BorderLayout.CENTER);
 
-                    //        fPanel.add(pan,gbc);
-                    //        fPanel.repaint();
-                    //        fPanel.revalidate();
-                    //     }
-                    // }
+                           fPanel.add(pan,gbc);
+                           fPanel.repaint();
+                           fPanel.revalidate();
+                        }
+                    }
 
-                        ActivityPanel aPanel = new ActivityPanel();
-                        fPanel.add(aPanel,gbc);
-                        fPanel.updateNumbers();
+                        // ActivityPanel aPanel = new ActivityPanel();
+                        // fPanel.add(aPanel,gbc);
+                        // fPanel.updateNumbers();
 
-                        aPanel.getFinished().addMouseListener(new MouseAdapter() {
-                            @Override
-                            public void mousePressed(MouseEvent e) {
-                                aPanel.changeState();
-                                fPanel.updateNumbers();
-                                fPanel.revalidate();
-                            }
+                        // aPanel.getFinished().addMouseListener(new MouseAdapter() {
+                        //     @Override
+                        //     public void mousePressed(MouseEvent e) {
+                        //         aPanel.changeState();
+                        //         fPanel.updateNumbers();
+                        //         fPanel.revalidate();
+                        //     }
 
-                        });
-
-
+                        // });
                 }
-
             });
 
 
-        deleteActivity.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                fPanel.removeCompletedTasks();
-				fPanel.repaint();
-                fPanel.revalidate();
-            }
-        });
+        // deleteActivity.addActionListener(new ActionListener(){
+        //     public void actionPerformed(ActionEvent e){
+        //         fPanel.removeCompletedTasks();
+		// 		fPanel.repaint();
+        //         fPanel.revalidate();
+        //     }
+        // });
 
 
 }   

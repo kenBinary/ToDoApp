@@ -72,35 +72,6 @@ public class App {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-
-                    // JTextField activityName = new JTextField(11);
-                    // JTextField dueDate = new JTextField(11);
-                    // JTextField dueHour = new JTextField(11);
-              
-                    // JPanel myPanel = new JPanel(new GridLayout(3,2));
-
-                    
-                    // TextPrompt aPholder = new TextPrompt("Activity Name",activityName);
-                    // aPholder.setForeground(Color.red);
-                    // aPholder.changeAlpha(0.5f);
-
-                    // TextPrompt datePholder = new TextPrompt("mm/dd/yyyy",dueDate);
-                    // datePholder.setForeground(Color.red);
-                    // datePholder.changeAlpha(0.5f);
-
-                    // TextPrompt hourPholder = new TextPrompt("hh/mm/am or pm",dueHour);
-                    // hourPholder.setForeground(Color.red);
-                    // hourPholder.changeAlpha(0.5f);
-
-                    // myPanel.add(activityName);
-                    // myPanel.add(Box.createHorizontalStrut(15));
-                    // myPanel.add(new JLabel("Due Date:"));
-                    // myPanel.add(dueDate);
-                    // myPanel.add(Box.createHorizontalStrut(15));
-                    // myPanel.add(new JLabel("Due hour:"));
-                    // myPanel.add(dueHour);
-
-
                     AddActivityPrompt myPanel = new AddActivityPrompt();
               
                     int result = JOptionPane.showConfirmDialog(frame, myPanel, 

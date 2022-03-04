@@ -57,14 +57,14 @@ public class App {
         ActionListener dActvity = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Component[] component = fPanel.getComponents();
-                fPanel.remove(component[0]);
-                fPanel.repaint();
+
+                fPanel.removeCompletedTasks();
+				fPanel.repaint();
                 fPanel.revalidate();
             }
         };
 
-        // deleteActivity.addActionListener(dActvity);
+        deleteActivity.addActionListener(dActvity);
 
         // event listener to add new activity
         addActivity.addActionListener(
@@ -82,16 +82,34 @@ public class App {
                             JOptionPane.showMessageDialog(frame, "Enter some input!");
                         }
                         else if (!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")) {
-                           JPanel pan  = new JPanel(new BorderLayout());
-                           pan.setBackground(Color.blue);
-                           pan.setBorder(BorderFactory.createLineBorder(Color.green));
-                           JTextArea label = new JTextArea("Activity name: " + myPanel.getActivityNameText()+"\n"+"Due Date: "+myPanel.getDueDateText()+"\n"+"Due Hour: "+myPanel.getDueHourText());
-                           label.setEditable(false);
-                           pan.add(label,BorderLayout.CENTER);
 
-                           fPanel.add(pan,gbc);
-                           fPanel.repaint();
-                           fPanel.revalidate();
+                        //    JPanel pan  = new JPanel(new BorderLayout());
+                        //    pan.setBackground(Color.blue);
+                        //    pan.setBorder(BorderFactory.createLineBorder(Color.green));
+                        //    JTextArea label = new JTextArea("Activity name: " + myPanel.getActivityNameText()+"\n"+"Due Date: "+myPanel.getDueDateText()+"\n"+"Due Hour: "+myPanel.getDueHourText());
+                        //    label.setEditable(false);
+                        //    pan.add(label,BorderLayout.CENTER);
+
+                        //    fPanel.add(pan,gbc);
+                        //    fPanel.repaint();
+                        //    fPanel.revalidate();
+
+                        ActivityPanel aPanel = new ActivityPanel();
+                        aPanel.setActivityDetails(myPanel.getActivityNameText(),myPanel.getDueDateText(),myPanel.getDueHourText());
+                        fPanel.add(aPanel,gbc);
+                        fPanel.updateNumbers();
+
+                        aPanel.getFinished().addMouseListener(new MouseAdapter() {
+                            @Override
+                            public void mousePressed(MouseEvent e) {
+                                aPanel.changeState();
+                                fPanel.updateNumbers();
+                                fPanel.revalidate();
+                            }
+
+                        });
+
+
                         }
                     }
 

@@ -22,6 +22,15 @@ public class Activity {
     public boolean setfinished() {
         return finished = true;
     }
+    public String getActivityName(){
+        return activityName;
+    }
+    public String getDueDate(){
+        return dueDate;
+    }
+    public String getDueHour(){
+        return dueHour;
+    }
 
     
 

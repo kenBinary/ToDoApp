@@ -11,6 +11,7 @@ public class firstPanel extends JPanel {
     public void updateNumbers()
 	{
 		Component[] listItems = this.getComponents();
+
 		
 		for(int i = 0;i<listItems.length;i++)
 		{

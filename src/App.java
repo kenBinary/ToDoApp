@@ -75,7 +75,7 @@ public class App {
                     AddActivityPrompt myPanel = new AddActivityPrompt();
               
                     int result = JOptionPane.showConfirmDialog(frame, myPanel, 
-                             "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+                             "Enter inputs", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
 
                     if (result == JOptionPane.OK_OPTION) {
                         if (myPanel.getActivityNameText().equals("") && myPanel.getDueDateText().equals("") && myPanel.getDueHourText().equals("")) {
@@ -96,24 +96,25 @@ public class App {
                                 fPanel.updateNumbers();
                                 fPanel.revalidate();
                             }
-
                         });
-
                         aPanel.getEdit().addMouseListener( new MouseAdapter(){
-
                                 public void mousePressed(MouseEvent e){
-                                    System.out.println("laksjdf");
+                                    int result = JOptionPane.showConfirmDialog(frame, myPanel, 
+                                    "Enter Inputs", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+                                    if (result == JOptionPane.OK_OPTION) {
+                                        if (myPanel.getActivityNameText().equals("") && myPanel.getDueDateText().equals("") && myPanel.getDueHourText().equals("")) {
+                                            JOptionPane.showMessageDialog(frame, "Enter some input!");
+                                        }
+                                        else if(!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")){
+                                            aPanel.setActivityDetails(myPanel.getActivityNameText(),myPanel.getDueDateText(),myPanel.getDueHourText());
+                                        }
+                                    }
                                 }
-
-
                         });
-
-
                         }
                     }
                 }
             });
-
 }   
 
     public static void main(String[] args) throws Exception {

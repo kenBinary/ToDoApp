@@ -1,7 +1,9 @@
 public class Activity {
-    public String activityName;
-    public String dueDate;
-    public String dueHour;
+    private String activityName;
+    private String dueDate;
+    private String dueHour;
+    private int index;
+    
 
     Activity(String cActivityName, String cDueDate,String cDueHour){
         activityName = cActivityName;
@@ -11,7 +13,7 @@ public class Activity {
 
 
     public String toString() {
-        return activityName+","+dueDate+","+dueHour;
+        return index+","+activityName+","+dueDate+","+dueHour;
     }
     public String getActivityName(){
         return activityName;
@@ -22,7 +24,10 @@ public class Activity {
     public String getDueHour(){
         return dueHour;
     }
-
-    
-
+    public int getIndex(){
+        return index;
+    }
+    public void setIndex(int sIndex){
+        index = sIndex;
+    }
 }

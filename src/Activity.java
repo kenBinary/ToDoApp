@@ -27,7 +27,21 @@ public class Activity {
     public int getIndex(){
         return index;
     }
+
+    public void setActivityName(String sActivityName){
+        activityName = sActivityName;
+    }
+
+    public void setDueDate(String sDuedate){
+        dueDate = sDuedate;
+    }
+
+    public void setDueHour(String sDueHour){
+        dueHour = sDueHour;
+    }
+
     public void setIndex(int sIndex){
         index = sIndex;
     }
+
 }

@@ -17,10 +17,10 @@ public class ActivityPanel extends JPanel {
 
         activityIndex = new JLabel();
 		activityIndex.setHorizontalAlignment(JLabel.CENTER);
-		activityIndex.setBorder(BorderFactory.createEmptyBorder(2, 7, 2, 7));
+		activityIndex.setBorder(BorderFactory.createEmptyBorder(7, 7, 2, 7));
 		this.add(activityIndex,BorderLayout.WEST);
 
-		activityDetails.setBorder(BorderFactory.createEmptyBorder());
+		activityDetails.setBorder(BorderFactory.createEmptyBorder(2,7,2,7));
 		activityDetails.setBackground(new Color(0,0,128,100));
 		activityDetails.setEditable(false);
 

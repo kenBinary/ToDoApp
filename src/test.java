@@ -1,70 +1,28 @@
-// import javax.swing.*;
-// // import javax.swing.UIManager.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-// public class test {
-//     test(){
+import javax.swing.*;
+// import javax.swing.UIManager.*;
 
+public class test {
 
-         
+    public static void main(String[] args) throws Exception {
+        String lineRead;
+        String[] splitLine;
+        try (BufferedReader reader = new BufferedReader(new FileReader("Activities.csv"))) {
 
-//     }
-
-
-
-
-
-
-
-//     public static void main(String[] args) throws Exception {
-//         JTextField activityName = new JTextField(5);
-//         JTextField dueDate = new JTextField(5);
-//         JTextField dueHour = new JTextField(5);
-  
-//         JPanel myPanel = new JPanel();
-//         myPanel.add(new JLabel("Activity Name:"));
-//         // TextPrompt t = new TextPrompt("asdf",activityName);
-//         // myPanel.add(t);
-//         myPanel.add(activityName);
-//         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-//         myPanel.add(new JLabel("Due Date:"));
-//         myPanel.add(dueDate);
-//         myPanel.add(Box.createHorizontalStrut(15)); // a spacer
-//         myPanel.add(new JLabel("Due hour:"));
-//         myPanel.add(dueHour);
-  
-//         int result = JOptionPane.showConfirmDialog(null, myPanel, 
-//                  "Please Enter X and Y Values", JOptionPane.OK_CANCEL_OPTION);
+            lineRead = reader.readLine();
+            splitLine = lineRead.split(",");
+            while (lineRead != null) {
+                System.out.print(lineRead);
+                lineRead = reader.readLine();
+            }
 
 
-//         if (result == JOptionPane.OK_OPTION) {
-//            System.out.println("x value: " + activityName.getText());
-//            System.out.println("y value: " + dueDate.getText());
-//            System.out.println("y value: " + dueHour.getText());
-//            Activity test = new Activity("sadf","asdf","asdf");
-//            System.out.println(test);
-//         }
-        
-        
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
-
-
-
-
-//         // javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//         //     public void run() {
-//         //         try {
-//         //             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-//         //                 if ("Nimbus".equals(info.getName())) {
-//         //                     UIManager.setLookAndFeel(info.getClassName());
-//         //                     break;
-//         //                 }
-//         //             }
-//         //         } catch (Exception e) {
-//         //             // If Nimbus is not available, you can set the GUI to another look and feel.
-//         //         }
-//         //         new test();
-//         //     }
-//         // });
-
-//     }
-// }
+    }
+}

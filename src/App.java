@@ -11,6 +11,8 @@ public class App {
     JButton deleteActivity;
     JButton addActivity;
     JButton deleteAllActivity;
+    FileHandler fHandler = new FileHandler();
+    
 
     App() {
 
@@ -49,6 +51,7 @@ public class App {
         //event listener to remove all components and activities
         deleteAllActivity.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                fPanel.updateNumbers();
                 fPanel.removeAll();
                 fPanel.revalidate();
                 fPanel.repaint();
@@ -84,10 +87,13 @@ public class App {
                         }
                         else if (!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")) {
 
+
                             Activity nActivity = new Activity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText());
+                            fHandler.appendFile(nActivity.toString());
+
                             System.out.print(nActivity.toString());
                             ActivityPanel aPanel = new ActivityPanel();
-                            aPanel.setActivityDetails(myPanel.getActivityNameText(),myPanel.getDueDateText(),myPanel.getDueHourText());
+                            aPanel.setActivityDetails(nActivity.getActivityName(),nActivity.getDueDate(),nActivity.getDueHour());
                             fPanel.add(aPanel,gbc);
                             fPanel.updateNumbers();
 
@@ -95,7 +101,6 @@ public class App {
                                 @Override
                                 public void mousePressed(MouseEvent e) {
                                     aPanel.changeState();
-                                    fPanel.updateNumbers();
                                     fPanel.revalidate();
                                 }
                             });
@@ -108,7 +113,9 @@ public class App {
                                                 JOptionPane.showMessageDialog(frame, "Enter some input!");
                                             }
                                             else if(!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")){
-                                                aPanel.setActivityDetails(myPanel.getActivityNameText(),myPanel.getDueDateText(),myPanel.getDueHourText());
+                                                Activity nActivity = new Activity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText());
+                                                fHandler.appendFile(nActivity.toString());
+                                                aPanel.setActivityDetails(nActivity.getActivityName(),nActivity.getDueDate(),nActivity.getDueHour());
                                             }
                                         }
                                     }

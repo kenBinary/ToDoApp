@@ -56,7 +56,9 @@ public class ActivityPanel extends JPanel {
 		activityDetails.setText("  Activity name: " + activityName+"\n"+"        Due Date: "+dueDate+"\n"+"        Due Hour: "+dueHour);
 		// activityDetails.setText("alskdfjlksajdfkljaskldfjslkafjdsklafjkl");
 	}
-	
+	public int getActivityIndex(){
+		return Integer.parseInt(activityIndex.getText()) ;
+	}
 	
 	public JButton getFinished()
 	{

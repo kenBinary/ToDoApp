@@ -17,27 +17,23 @@ public class FileHandler {
     }
 
 
-    // public LinkedList<Activity> readFile(){
-        
-    //     LinkedList<Activity> m = new LinkedList<Activity>();
-    //     String lineRead;
-    //     String[] splitLine;
-    //     Activity activity;
-        
-    //     try (BufferedReader reader = new BufferedReader(new FileReader("Activities.csv"))) {
-    //         lineRead = reader.readLine();
+    public LinkedList<Activity> readFile(){
+        LinkedList<Activity> activities = new LinkedList<Activity>();
+        String lineRead;
+        String[] splitLine;
+        Activity activity;
+        try (BufferedReader reader = new BufferedReader(new FileReader("Activities.csv"))) {
+            lineRead = reader.readLine();
             
-    //         while (lineRead != null) {
-    //             splitLine = lineRead.split(",");
-
-                
-    //             m.add(activity);
-    //             lineRead = reader.readLine();
-    //         }
-    //     } catch (IOException e) {
-    //         System.out.println(e.getMessage());
-    //     }
-    //     return m;
-    // }
-    
+            while (lineRead != null) {
+                splitLine = lineRead.split(",");
+                activity = new Activity(splitLine[0], splitLine[1], splitLine[2]);
+                activities.add(activity);
+                lineRead = reader.readLine();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return activities;
+    }
 }

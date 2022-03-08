@@ -11,13 +11,12 @@ public class firstPanel extends JPanel {
     public void updateNumbers()
 	{
 		Component[] listItems = this.getComponents();
-
 		
 		for(int i = 0;i<listItems.length;i++)
 		{
 			if(listItems[i] instanceof ActivityPanel)
-			{
-				((ActivityPanel)listItems[i]).changeIndex(i+1);
+			{	
+				((ActivityPanel)listItems[i]).changeIndex(i);
 			}
 		}
 		

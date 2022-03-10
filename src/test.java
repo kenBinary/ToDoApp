@@ -2,26 +2,12 @@
 // import java.io.FileReader;
 // import java.io.IOException;
 
-// // import javax.swing.UIManager.*;
+// import javax.swing.UIManager.*;
 
-// public class test {
+public class test {
 
-//     public static void main(String[] args) throws Exception {
-//         String lineRead;
-//         String[] splitLine;
-//         try (BufferedReader reader = new BufferedReader(new FileReader("Activities.csv"))) {
-
-//             lineRead = reader.readLine();
-//             splitLine = lineRead.split(",");
-//             while (lineRead != null) {
-//                 System.out.print(lineRead);
-//                 lineRead = reader.readLine();
-//             }
-
-
-//         } catch (IOException e) {
-//             System.out.println(e.getMessage());
-//         }
-
-//     }
-// }
+    public static void main(String[] args) throws Exception {
+        DescriptionActivity test = new DescriptionActivity("cActivityName", "cDueDate", "cDueHour", "cDescription");
+        System.out.println(test.toString());
+    }
+}

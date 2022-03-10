@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.UIManager.*;
 
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -53,6 +52,8 @@ public class App {
 
         LinkedList<Activity> activities = fHandler.readFile();
 
+
+
         for (Activity activity : activities) {
             ActivityPanel aPanel = new ActivityPanel();
             aPanel.setActivityDetails(activity.getActivityName(),activity.getDueDate(),activity.getDueHour());
@@ -76,13 +77,12 @@ public class App {
                         fHandler.appendFile(activity.toString());
                         System.out.print(activity.toString()); 
                     }
+
+                    fPanel.updateNumbers();
                     aPanel.changeState();
                     fPanel.revalidate();
-                    System.out.println(""+ aPanel.getActivityIndex());
                 }
             });
-
-
 
             aPanel.getEdit().addMouseListener( new MouseAdapter(){
                 public void mousePressed(MouseEvent e){
@@ -104,6 +104,7 @@ public class App {
                 }
         });
         }
+
         fPanel.repaint();
         fPanel.revalidate();
 
@@ -125,20 +126,14 @@ public class App {
                     System.out.print(z);
                   System.out.println("Failed to delete the file.");
                 }
+
+;
             }
         });
         
         ActionListener dActvity = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-
-                // System.out.println(""+ aPanel.getActivityIndex());
-                // for (Activity activity : activities) {
-                //     if (activity.get) {
-                        
-                //     }
-                // }
-
                 fPanel.removeCompletedTasks();
 				fPanel.repaint();
                 fPanel.revalidate();
@@ -152,20 +147,79 @@ public class App {
             new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    ActivityPanel aPanel;
+
+
 
                     AddActivityPrompt myPanel = new AddActivityPrompt();
-              
                     int result = JOptionPane.showConfirmDialog(frame, myPanel, 
                              "Enter inputs", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
 
                     if (result == JOptionPane.OK_OPTION) {
+
+
                         if (myPanel.getActivityNameText().equals("") || myPanel.getDueDateText().equals("") || myPanel.getDueHourText().equals("")) {
                             JOptionPane.showMessageDialog(frame, "Enter some input!");
                         }
-                        else{
+
+                        else if(!myPanel.getActivityNameText().equals("") && !myPanel.getDueDateText().equals("") && !myPanel.getDueHourText().equals("") && !myPanel.getDescription().equals("")){
+                            DescriptionActivity dActivity = new DescriptionActivity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText(), myPanel.getDescription());
+                            activities.add(dActivity);
+                            fHandler.appendFile(dActivity.toString());
+                            aPanel = new ActivityPanel();
+                            aPanel.setActivityDetails(dActivity.getActivityName(), dActivity.getDueDate(), dActivity.getDueHour(), dActivity.getDescription());
+                            fPanel.add(aPanel,gbc);
+                            fPanel.updateNumbers();
+                            aPanel.getFinished().addMouseListener(new MouseAdapter() {
+                                @Override
+                                public void mousePressed(MouseEvent e) {
+
+                                    activities.remove(aPanel.getActivityIndex());
+                                    File myObj = new File("Activities.csv"); 
+                                    try {
+                                        myObj.delete();
+                                        System.out.println("Deleted the file: " + myObj.getName());
+                                    } catch (Exception z) {
+                                        System.out.print(z);
+                                      System.out.println("Failed to delete the file.");
+                                    }
+                                    for (Activity activity : activities) {
+                                        fHandler.appendFile(activity.toString());
+                                        System.out.print(activity.toString()); 
+                                    }
+                                    
+                                    aPanel.changeState();
+                                    fPanel.revalidate();
+                                }
+                            });
+                            aPanel.getEdit().addMouseListener( new MouseAdapter(){
+                                    public void mousePressed(MouseEvent e){
+                                        int result = JOptionPane.showConfirmDialog(frame, myPanel, 
+                                        "Enter Inputs", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+                                        if (result == JOptionPane.OK_OPTION) {
+                                            if (myPanel.getActivityNameText().equals("") && myPanel.getDueDateText().equals("") && myPanel.getDueHourText().equals("")) {
+                                                JOptionPane.showMessageDialog(frame, "Enter some input!");
+                                            }
+                                            else if(!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals("")){
+                                                DescriptionActivity dActivity = new DescriptionActivity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText(), myPanel.getDescription());
+                                                fHandler.appendFile(dActivity.toString());
+                                                aPanel.setActivityDetails(dActivity.getActivityName(),dActivity.getDueDate(),dActivity.getDueHour(),dActivity.getDescription());
+                                            }
+                                        }
+                                    }
+                            });
+
+
+
+                        }
+                        else if((!myPanel.getActivityNameText().equals("") || !myPanel.getDueDateText().equals("") || !myPanel.getDueHourText().equals(""))){
+
                             Activity nActivity = new Activity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText());
+                            activities.add(nActivity);
+
+
                             fHandler.appendFile(nActivity.toString());
-                            ActivityPanel aPanel = new ActivityPanel();;
+                            aPanel = new ActivityPanel();
                             aPanel.setActivityDetails(nActivity.getActivityName(),nActivity.getDueDate(),nActivity.getDueHour());
                             fPanel.add(aPanel,gbc);
                             fPanel.updateNumbers();
@@ -173,7 +227,21 @@ public class App {
                             aPanel.getFinished().addMouseListener(new MouseAdapter() {
                                 @Override
                                 public void mousePressed(MouseEvent e) {
-                                    System.out.println(""+ aPanel.getActivityIndex());
+
+                                    activities.remove(aPanel.getActivityIndex());
+                                    File myObj = new File("Activities.csv"); 
+                                    try {
+                                        myObj.delete();
+                                        System.out.println("Deleted the file: " + myObj.getName());
+                                    } catch (Exception z) {
+                                        System.out.print(z);
+                                      System.out.println("Failed to delete the file.");
+                                    }
+                                    for (Activity activity : activities) {
+                                        fHandler.appendFile(activity.toString());
+                                        System.out.print(activity.toString()); 
+                                    }
+
                                     aPanel.changeState();
                                     fPanel.revalidate();
                                 }

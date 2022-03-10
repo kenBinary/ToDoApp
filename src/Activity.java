@@ -8,8 +8,6 @@ public class Activity {
         dueDate = cDueDate;
         dueHour = cDueHour;
     }
-
-
     public String toString() {
         return activityName+","+dueDate+","+dueHour;
     }

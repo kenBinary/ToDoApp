@@ -8,7 +8,6 @@ public class secondPanel extends JPanel {
 
     secondPanel(){
         this.setBackground(new Color(12, 14, 12));
-        this.setSize(250, 250);
         this.setLayout(new GridLayout(10,1,0,25));
         this.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 7));
         JLabel listLabel = new JLabel("View list",SwingConstants.CENTER);

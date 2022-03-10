@@ -29,7 +29,7 @@ public class ActivityPanel extends JPanel {
 		JPanel eastPanel = new JPanel();
 		eastPanel.setLayout(new GridLayout(2,1));
 
-        finished = new JButton("Finished");
+        finished = new JButton("Done");
 		finished.setBorder(BorderFactory.createEmptyBorder(2, 7, 2, 7));
 		finished.setFocusPainted(false);
 

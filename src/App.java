@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.UIManager.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -17,7 +16,7 @@ public class App {
     App() {
 
 
-        JFrame frame = new JFrame("To-do");
+        JFrame frame = new JFrame("To-do Application");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setLayout(new BorderLayout(0,10));
@@ -33,16 +32,20 @@ public class App {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.ipady = 5;
 
-
+        JTextArea welcome = new JTextArea("Welcome! \n to add an activity press 'Add Activity'\n to delete finished activities press 'Delete Activities' \n to delete all activities press 'Delete All' \n GREEN MEANS DONE AND YELLOW MEANS PENDING ");
+        welcome.setEditable(false);
+        welcome.setFont(new Font("Serif", Font.PLAIN, 13));
         firstPanel fPanel = new firstPanel();
+        frame.add(welcome,BorderLayout.NORTH);
         JScrollPane scrollPane = new JScrollPane();
         thirdPanel tPanel = new thirdPanel();
         secondPanel sPanel = new secondPanel();
         tPanel.add(sPanel,BorderLayout.CENTER);
         scrollPane.setViewportView(fPanel);
         frame.add(scrollPane,BorderLayout.CENTER);
-        frame.setSize(500,500);
-        frame.add(tPanel,BorderLayout.EAST);
+        frame.setMinimumSize(new Dimension(700,700));
+        frame.setSize(700,700);
+        frame.add(tPanel,BorderLayout.WEST);
         frame.setVisible(true);
 
         deleteAllActivity = sPanel.getDeleteAll();

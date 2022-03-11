@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.LinkedList;
 
-public class App {
+public class App extends JFrame {
     
     JButton deleteActivity;
     JButton addActivity;
@@ -42,6 +42,8 @@ public class App {
         secondPanel sPanel = new secondPanel();
         tPanel.add(sPanel,BorderLayout.CENTER);
         scrollPane.setViewportView(fPanel);
+
+
         frame.add(scrollPane,BorderLayout.CENTER);
         frame.setMinimumSize(new Dimension(700,700));
         frame.setSize(700,700);

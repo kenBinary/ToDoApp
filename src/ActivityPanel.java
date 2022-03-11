@@ -11,7 +11,7 @@ public class ActivityPanel extends JPanel {
 	
 	private boolean isFinished;
     ActivityPanel(){
-        this.setBorder(BorderFactory.createLineBorder(Color.white));
+        this.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(219, 161, 0)));
         this.setLayout(new BorderLayout());
         isFinished = false;
 
@@ -20,7 +20,7 @@ public class ActivityPanel extends JPanel {
 		activityIndex.setBorder(BorderFactory.createEmptyBorder(7, 7, 2, 7));
 		this.add(activityIndex,BorderLayout.WEST);
 
-		activityDetails.setBorder(BorderFactory.createEmptyBorder(2,7,2,7));
+		activityDetails.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, new Color(219, 161, 0)));
 		activityDetails.setBackground(new Color(0,0,128,100));
 		activityDetails.setEditable(false);
 
@@ -78,8 +78,9 @@ public class ActivityPanel extends JPanel {
 	
 	public void changeState()
 	{
-		this.setBorder(BorderFactory.createLineBorder(Color.green));
+		this.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.green));
 		activityDetails.setBackground(Color.green);
+		activityDetails.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.green));
 		isFinished = true;
 		revalidate();
 	}

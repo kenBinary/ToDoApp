@@ -6,13 +6,15 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import java.awt.*;
 import java.util.Properties;
+import java.awt.event.*;
 
 public class AddActivityPrompt extends JPanel {
     JTextField activityName = new JTextField(11);
-    JTextField dueDate = new JTextField(11);
     JTextField dueHour = new JTextField(11);
     JTextField activityDescription = new JTextField(11);
     JDatePickerImpl datePicker;
+    JComboBox<String> hourList;
+    public String x;
 
     AddActivityPrompt(){
 
@@ -30,13 +32,19 @@ public class AddActivityPrompt extends JPanel {
         JDatePanelImpl datePanel = new JDatePanelImpl(model,p);
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 
-        TextPrompt datePholder = new TextPrompt("mm/dd/yyyy",dueDate);
-        datePholder.setForeground(Color.red);
-        datePholder.changeAlpha(0.5f);
+        String[] hours = new String[] {"1:00 am","2:00 am","3:00 am","4:00 am","5:00 am","6:00 am","7:00 am","8:00 am","9:00 am","10:00 am","11:00 am","12:00 am","1:00 pm","2:00 pm","3:00 pm","4:00 pm","5:00 pm","6:00 pm","7:00 pm","8:00 pm","9:00 pm","10:00 pm","11:00 pm","12:00 pm"};
+        JComboBox<String> hourList = new JComboBox<String>(hours);
+        hourList.setSelectedIndex(-1);
 
-        TextPrompt hourPholder = new TextPrompt("hh/mm/am or pm",dueHour);
-        hourPholder.setForeground(Color.red);
-        hourPholder.changeAlpha(0.5f);
+        ActionListener dActvity = new ActionListener(){
+          @Override
+          public void actionPerformed(ActionEvent ae) {
+              x = String.valueOf(hourList.getSelectedItem());
+              System.out.print(x);
+
+          }
+      };
+      hourList.addActionListener(dActvity);
 
         TextPrompt aDescription = new TextPrompt("Description",activityDescription);
         aDescription.setForeground(Color.red);
@@ -49,7 +57,7 @@ public class AddActivityPrompt extends JPanel {
         this.add(datePicker);
         this.add(Box.createHorizontalStrut(15));
         this.add(new JLabel("Due hour:"));
-        this.add(dueHour);
+        this.add(hourList);
         this.add(Box.createHorizontalStrut(15));
         this.add(new JLabel("Description:"));
         this.add(activityDescription);
@@ -57,9 +65,6 @@ public class AddActivityPrompt extends JPanel {
 
     public JTextField getActivityName(){
 		return activityName;
-	}
-	public JTextField getDueDate() {
-		return dueDate;
 	}
     public JTextField getDueHour() {
 		return dueHour;
@@ -72,7 +77,8 @@ public class AddActivityPrompt extends JPanel {
 		return datePicker.getJFormattedTextField().getText();
 	}
     public String getDueHourText() {
-		return dueHour.getText();
+    return x;
+		// return dueHour.getText();
 	}
 
   public String getDescription() {

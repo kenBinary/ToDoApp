@@ -5,6 +5,8 @@ public class secondPanel extends JPanel {
     JButton deleteActivity;
     JButton addActivity;
     JButton deleteAllActivity;
+    JButton searchActivity;
+
 
     secondPanel(){
         this.setBackground(new Color(12, 14, 12));
@@ -19,6 +21,7 @@ public class secondPanel extends JPanel {
         deleteActivity = new JButton("Delete Activity");
         addActivity = new JButton("Add Activity");
         deleteAllActivity = new JButton("Delete All");
+        searchActivity = new JButton("Search Activity");
         blank3.setForeground(Color.white);
         blank3.setFont(new Font("Serif", Font.PLAIN, 20));
         this.add(blank3);
@@ -27,6 +30,7 @@ public class secondPanel extends JPanel {
         this.add(deleteActivity);
         this.add(addActivity);
         this.add(deleteAllActivity);
+        this.add(searchActivity);
     }
     public JButton getDeleteActivity(){
 		return deleteActivity;
@@ -36,5 +40,8 @@ public class secondPanel extends JPanel {
 	}
     public JButton getDeleteAll() {
 		return deleteAllActivity;
+	}
+  public JButton getSearchActivity() {
+		return searchActivity;
 	}
 }

@@ -8,6 +8,7 @@ public class ActivityPanel extends JPanel {
 	JTextArea activityDetails = new JTextArea();
 	JButton finished;
 	JButton edit;
+	String activityName;
 	
 	private boolean isFinished;
     ActivityPanel(){
@@ -61,6 +62,12 @@ public class ActivityPanel extends JPanel {
 	}
 	public int getActivityIndex(){
 		return Integer.parseInt(activityIndex.getText()) ;
+	}
+	public void setActivityName(String cactivityName){
+		activityName = cactivityName;
+	}
+	public String getActivityName(){
+		return activityName;
 	}
 	
 	public JButton getFinished()

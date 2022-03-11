@@ -10,6 +10,7 @@ public class App extends JFrame {
     JButton deleteActivity;
     JButton addActivity;
     JButton deleteAllActivity;
+    JButton searchActivity;
 
     
 
@@ -53,6 +54,7 @@ public class App extends JFrame {
         deleteAllActivity = sPanel.getDeleteAll();
         addActivity = sPanel.getAddActivity();
         deleteActivity = sPanel.getDeleteActivity();
+        searchActivity = sPanel.getSearchActivity();
 
 
         LinkedList<Activity> activities = fHandler.readFile();
@@ -62,6 +64,7 @@ public class App extends JFrame {
         for (Activity activity : activities) {
             ActivityPanel aPanel = new ActivityPanel();
             aPanel.setActivityDetails(activity.getActivityName(),activity.getDueDate(),activity.getDueHour());
+            aPanel.setActivityName(activity.getActivityName());
             fPanel.add(aPanel,gbc);
             fPanel.updateNumbers();
 
@@ -104,6 +107,7 @@ public class App extends JFrame {
                             Activity nActivity = new Activity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText());
                             fHandler.appendFile(nActivity.toString());
                             aPanel.setActivityDetails(nActivity.getActivityName(),nActivity.getDueDate(),nActivity.getDueHour());
+                            aPanel.setActivityName(nActivity.getActivityName());
                         }
                     }
                 }
@@ -113,7 +117,23 @@ public class App extends JFrame {
         fPanel.repaint();
         fPanel.revalidate();
 
+        ActionListener searchActivityEvent = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String search = JOptionPane.showInputDialog(frame, "Enter name of activity");
 
+                Component[] listItems = fPanel.getComponents();
+                for (Component test : listItems) {
+                    if (test instanceof ActivityPanel) {
+                        if (((ActivityPanel)test).getActivityName().equals(search)) {
+                            JOptionPane.showMessageDialog(frame, "the activity is at index " +((ActivityPanel)test).getActivityIndex() , "Index of Activity",1);
+                        }
+
+                    }
+                }
+            }
+        };
+        searchActivity.addActionListener(searchActivityEvent);
 
 
         //event listener to remove all components and activities
@@ -173,6 +193,7 @@ public class App extends JFrame {
                             fHandler.appendFile(dActivity.toString());
                             aPanel = new ActivityPanel();
                             aPanel.setActivityDetails(dActivity.getActivityName(), dActivity.getDueDate(), dActivity.getDueHour(), dActivity.getDescription());
+                            aPanel.setActivityName(dActivity.getActivityName());
                             fPanel.add(aPanel,gbc);
                             fPanel.updateNumbers();
                             aPanel.getFinished().addMouseListener(new MouseAdapter() {
@@ -209,6 +230,8 @@ public class App extends JFrame {
                                                 DescriptionActivity dActivity = new DescriptionActivity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText(), myPanel.getDescription());
                                                 fHandler.appendFile(dActivity.toString());
                                                 aPanel.setActivityDetails(dActivity.getActivityName(),dActivity.getDueDate(),dActivity.getDueHour(),dActivity.getDescription());
+                                                aPanel.setActivityName(dActivity.getActivityName());
+
                                             }
                                         }
                                     }
@@ -226,6 +249,7 @@ public class App extends JFrame {
                             fHandler.appendFile(nActivity.toString());
                             aPanel = new ActivityPanel();
                             aPanel.setActivityDetails(nActivity.getActivityName(),nActivity.getDueDate(),nActivity.getDueHour());
+                            aPanel.setActivityName(nActivity.getActivityName());
                             fPanel.add(aPanel,gbc);
                             fPanel.updateNumbers();
 
@@ -263,6 +287,7 @@ public class App extends JFrame {
                                                 Activity nActivity = new Activity(myPanel.getActivityNameText(), myPanel.getDueDateText(), myPanel.getDueHourText());
                                                 fHandler.appendFile(nActivity.toString());
                                                 aPanel.setActivityDetails(nActivity.getActivityName(),nActivity.getDueDate(),nActivity.getDueHour());
+                                                aPanel.setActivityName(nActivity.getActivityName());
                                             }
                                         }
                                     }
